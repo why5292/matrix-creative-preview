@@ -1,0 +1,108 @@
+/* Matrix v5: large work photographs and a language choice on every page. */
+.language-switch { display:inline-flex; flex-shrink:0; min-width:110px; }
+.language-switch select { min-height:44px; width:125px; padding:8px 25px 8px 12px; color:#ecf0f2; background:#141c24; border:1px solid #53616c; border-radius:0; font-size:13px; cursor:pointer; }
+.language-switch option { color:#f1f0e9; background:#141c24; }
+.language-switch select:focus-visible { outline:2px solid #a8c6f7; outline-offset:3px; }
+.site-header { gap:30px; }
+.site-header #navigation { margin-left:auto; gap:25px; }
+.site-header .header-note { font-size:12px; }
+.entry-tools { display:flex; align-items:center; gap:26px; }
+.entry-tools .language-switch select { background:#0d1927c9; }
+.entry-label strong { white-space:normal; }
+html[lang=en] .entry-label small { display:none; }
+html[lang=en] .entry-copy h1 { max-width:850px; font-size:clamp(43px,5vw,76px); }
+.works-intro { padding-top:45px; padding-bottom:25px; }
+.works-intro h1 { font-size:clamp(44px,5.3vw,76px); letter-spacing:-.045em; font-weight:400; line-height:1.15; margin-top:16px; }
+.works-tools { margin-top:25px; }
+.works-tools .filters { display:flex; gap:12px 30px; flex-wrap:wrap; }
+.works-tools .filters button { font-size:14px; min-height:44px; padding:8px 0; }
+.project-collection { padding:0 16px 85px; }
+.large-work-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:42px 12px; }
+.work-tile { min-width:0; }
+.work-tile a { display:block; }
+.tile-media { aspect-ratio:3/2; background:#0b0f12; overflow:hidden; }
+.tile-media img { width:100%;height:100%; object-fit:cover; object-position:var(--image-position,50% 50%); }
+.tile-media.preserve img { object-fit:contain; }
+.tile-caption { display:flex; align-items:start; justify-content:space-between; gap:22px; padding:18px 16px 0; }
+.tile-caption h2 { font-size:clamp(21px,1.85vw,29px); line-height:1.4; font-weight:400; letter-spacing:-.02em; }
+.tile-caption>span { font-size:26px;line-height:1.4;color:#9dbbdc; }
+.work-tile a:hover .tile-caption>span { color:#fff; }
+.work-tile a:focus-visible { outline:2px solid #b3caff;outline-offset:4px; }
+.project-intro { padding-top:20px; padding-bottom:30px; }
+.project-intro>div { margin-top:14px; }
+.project-intro h1 { font-size:clamp(30px,3.5vw,53px); font-weight:400; letter-spacing:-.035em; line-height:1.25; }
+.project-meta { font-size:14px; line-height:1.7; color:var(--muted); margin-top:14px; }
+.project-hero { padding:0 16px; }
+.project-hero>a { display:block; position:relative; background:#0b0f12; }
+.project-hero img { width:100%;height:auto; max-height:85vh; object-fit:contain; }
+.project-summary { padding-top:32px; padding-bottom:46px; }
+.project-summary p { font-size:16px; line-height:1.85; max-width:790px; color:#bac0c2; }
+.curated-gallery { padding:0 16px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:36px 14px; }
+.curated-image:first-child { grid-column:1/-1; }
+.curated-image>a { display:block;position:relative;background:#0b0f12; }
+.curated-image img { width:100%;height:auto;max-height:85vh;object-fit:contain; }
+.curated-image.is-portrait img { max-height:760px; }
+.curated-image figcaption { font-size:12px;letter-spacing:.07em;color:var(--muted); padding:13px 5px 0; }
+.image-plus { width:44px;height:44px; }
+.footer { margin-top:50px; }
+.next-case { padding-top:55px;padding-bottom:55px; }
+html[lang=en] .compact-heading h1 { font-size:clamp(46px,6vw,86px); }
+html[lang=en] .practice-grid h2 { font-size:24px; }
+@media(max-width:1100px) {
+ .site-header { gap:20px; }
+ .site-header .header-note { display:none; }
+ .site-header #navigation { gap:20px; }
+ .language-switch select { width:116px; }
+}
+@media(max-width:700px) {
+ .site-header { gap:14px; height:84px; }
+ .site-header .brand-logo { gap:8px; }
+ .site-header .brand-logo img { width:31px;height:31px;flex-basis:31px; }
+ .site-header .brand-name { font-size:21px; }
+ .site-header .brand-name small { font-size:10px; }
+ .site-header>.language-switch { margin-left:auto; min-width:0; }
+ .language-switch select { width:108px; font-size:12px; padding-left:9px;padding-right:15px; }
+ .site-header .menu-button { margin-left:0; gap:7px; font-size:12px; }
+ .menu-button span { font-size:18px; }
+ .site-header #navigation { top:83px; }
+ .entry-tools { gap:10px; }
+ .entry-tools .entry-signature { display:none; }
+ .entry-copy h1, html[lang=en] .entry-copy h1 { font-size:clamp(32px,5.1svh,46px); line-height:1.25; }
+ .entry-label strong { font-size:22px; }
+ .entry-copy .kicker { font-size:11px; }
+ .works-intro { padding-top:28px;padding-bottom:19px; }
+ .works-intro h1 { font-size:43px;margin-top:10px; }
+ .works-intro .kicker { font-size:11px; }
+ .works-tools { margin-top:19px; }
+ .works-tools .filters { gap:3px 22px; }
+ .works-tools .filters button { font-size:12px; }
+ .project-collection { padding:0 12px 45px; }
+ .large-work-grid { grid-template-columns:minmax(0,1fr);gap:31px; }
+ .tile-caption { padding:13px 8px 0;gap:15px; }
+ .tile-caption h2 { font-size:22px; }
+ .tile-caption>span { font-size:24px; }
+ .project-intro { padding-top:13px;padding-bottom:23px; }
+ .project-intro>div { margin-top:12px; }
+ .project-intro h1 { font-size:31px; }
+ .project-meta { font-size:13px;margin-top:11px; }
+ .project-hero { padding:0 12px; }
+ .project-hero img { max-height:none; }
+ .project-summary { padding-top:25px;padding-bottom:30px; }
+ .project-summary p { font-size:14px; }
+ .curated-gallery { display:block;padding:0 12px; }
+ .curated-image { margin-bottom:30px; }
+ .curated-image img,.curated-image.is-portrait img { max-height:none; }
+ .curated-image.is-portrait { max-width:100%; }
+ .next-case { padding-top:30px;padding-bottom:40px; }
+ .footer { margin-top:20px; }
+ html[lang=en] .compact-heading h1 { font-size:45px; }
+ html[lang=en] .entry-option { min-height:75px; }
+ html[lang=en] .entry-label strong { font-size:23px; }
+}
+@media(max-width:380px) {
+ .site-header { padding-left:16px;padding-right:16px;gap:10px; }
+ .site-header .brand-name { font-size:19px; }
+ .site-header .brand-logo img { width:28px;height:28px;flex-basis:28px; }
+ .site-header .brand-name small { letter-spacing:.22em; }
+ .site-header .language-switch select { width:100px; }
+}
