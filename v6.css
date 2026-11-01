@@ -1,6 +1,9 @@
 /* Proportional rows keep the image order and remove the holes of a fixed grid. */
 :root { --photo-gap:14px; }
 .portrait-trio .tile-media { aspect-ratio:3/4; }
+.tile-caption { display:block; }
+.tile-caption>.project-open { display:inline-block; margin-top:14px; padding-bottom:3px; border-bottom:1px solid currentColor; color:#bdc6cc; font-size:13px; font-weight:500; line-height:1.7; letter-spacing:.025em; }
+.work-tile a:focus-visible .project-open { color:#fff; }
 @media(min-width:701px) {
  .large-work-grid.has-portrait-trio { grid-template-columns:repeat(6,minmax(0,1fr)); }
  .large-work-grid.has-portrait-trio>.work-tile { grid-column:span 3; }
@@ -9,6 +12,9 @@
 .project-intro { padding-bottom:25px; }
 .project-intro h1 { max-width:1250px; text-wrap:pretty; }
 .project-description { max-width:850px; margin-top:17px; color:#bac0c2; font-size:15px; line-height:1.8; }
+.gallery-hint { margin-top:18px; color:#bdc6cc; font-size:13px; line-height:1.7; }
+.project-hero>a,.curated-image>a { cursor:zoom-in; }
+.project-hero>a:focus-visible,.curated-image>a:focus-visible { outline:2px solid #b3caff; outline-offset:4px; }
 .project-hero { margin:0 auto var(--photo-gap); }
 .project-hero>a { width:fit-content; max-width:100%; margin:auto; background:transparent; }
 .project-hero img { width:auto; max-width:100%; height:auto; max-height:86svh; object-fit:contain; }
@@ -19,7 +25,6 @@
 .curated-image img,.curated-image.is-portrait img { width:100%; height:auto; max-height:none; }
 .curated-image figcaption { position:absolute; bottom:12px; left:12px; right:12px; display:flex; justify-content:space-between; align-items:center; gap:8px; padding:0; pointer-events:none; }
 .photo-number,.photo-kind { background:#080d16bb; color:#fff; padding:5px 8px; font-size:12px; line-height:1.35; letter-spacing:.035em; }
-.curated-image .image-plus,.project-hero .image-plus { top:10px; right:10px; bottom:auto; display:grid; place-items:center; }
 .next-case { padding-top:45px; }
 .next-case h2 { line-height:1.3; }
 .studio-lead>div>p+p { margin-top:20px; }
