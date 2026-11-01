@@ -194,6 +194,8 @@
       card.hidden = !visible;
       if (visible) count += 1;
     });
+    const portraits = $$('.portrait-trio', workGrid);
+    workGrid.classList.toggle('has-portrait-trio', portraits.length === 3 && portraits.every(card => !card.hidden));
     filterButtons.forEach(button => {
       const selected = button.dataset.filter === chosen;
       button.classList.toggle('is-active', selected);

@@ -1,5 +1,11 @@
 /* Proportional rows keep the image order and remove the holes of a fixed grid. */
 :root { --photo-gap:14px; }
+.portrait-trio .tile-media { aspect-ratio:3/4; }
+@media(min-width:701px) {
+ .large-work-grid.has-portrait-trio { grid-template-columns:repeat(6,minmax(0,1fr)); }
+ .large-work-grid.has-portrait-trio>.work-tile { grid-column:span 3; }
+ .large-work-grid.has-portrait-trio>.portrait-trio { grid-column:span 2; }
+}
 .project-intro { padding-bottom:25px; }
 .project-intro h1 { max-width:1250px; text-wrap:pretty; }
 .project-description { max-width:850px; margin-top:17px; color:#bac0c2; font-size:15px; line-height:1.8; }
