@@ -299,9 +299,14 @@
     }
   }));
 
-  // Homepage films loop quietly; motion and manual pause preferences still apply.
+  // The homepage film starts muted and loops; an explicit pause always wins.
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const filmButtons = $$('[data-film-toggle]');
+  function filmIsVisible(video) {
+    const rect = video.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight &&
+      rect.right > 0 && rect.left < window.innerWidth;
+  }
   const filmStates = $$('[data-feature-film]').map((video, index) => ({
     video,
     button: filmButtons[index] || null,
@@ -309,10 +314,12 @@
     icon: filmButtons[index]?.querySelector('[data-film-icon]'),
     output: index === 0 ? $('#film-state') : null,
     phase: 'poster',
-    visible: false,
+    visible: filmIsVisible(video),
     autoAttempted: false,
     requested: false,
-    sourceAttached: false,
+    sourceAttached: video.hasAttribute('src'),
+    manualPaused: false,
+    autoBlocked: false,
     token: 0,
     message: ''
   }));
@@ -344,6 +351,7 @@
   }
 
   function pauseFilm(state, reason = 'user') {
+    if (reason === 'user') state.manualPaused = true;
     if (!state.requested && state.video.paused) return;
     state.token += 1;
     state.requested = false;
@@ -368,8 +376,26 @@
     renderFilm(state);
   }
 
+  function showFilmFrame(state) {
+    // Native autoplay can start before this controller or its observer is ready.
+    state.visible = filmIsVisible(state.video);
+    if (state.manualPaused || userPaused || pageBlocked() || !state.visible) {
+      pauseFilm(state, 'hidden');
+      return;
+    }
+    state.requested = true;
+    state.phase = 'playing';
+    state.message = '';
+    state.video.classList.add('has-frame');
+    renderFilm(state);
+  }
+
   async function playFilm(state, manual = false) {
     if (pageBlocked() || state.requested) return;
+    if (manual) {
+      state.manualPaused = false;
+      state.autoBlocked = false;
+    }
     const source = state.video.dataset.src;
     if (!source) {
       failFilm(state);
@@ -397,10 +423,13 @@
       await state.video.play();
       if (state.token !== token) return;
       if (!state.requested) state.video.pause();
+      else if (!state.video.paused) showFilmFrame(state);
     } catch (error) {
       if (state.token !== token || !state.requested) return;
       if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
         state.requested = false;
+        // Do not keep retrying a browser's autoplay refusal.
+        state.autoBlocked = true;
         state.phase = 'paused';
         state.message = manual ? ui.retry : ui.video_prompt;
         renderFilm(state);
@@ -412,8 +441,9 @@
 
   function maybeAutoPlayFilm(state) {
     if (state.video.hasAttribute('data-auto-film') &&
-      !reduced.matches && !connection?.saveData && !userPaused &&
-      !pageBlocked() && state.visible && !state.autoAttempted && state.phase === 'poster') {
+      !userPaused && !state.manualPaused && !state.autoBlocked &&
+      !pageBlocked() && state.visible && !state.requested &&
+      (state.phase === 'poster' || state.phase === 'paused')) {
       playFilm(state);
     }
   }
@@ -427,16 +457,7 @@
       if (state.requested || !video.paused) pauseFilm(state);
       else playFilm(state, true);
     });
-    video.addEventListener('playing', () => {
-      if (!state.requested || pageBlocked() || !state.visible) {
-        pauseFilm(state, 'hidden');
-        return;
-      }
-      state.phase = 'playing';
-      state.message = '';
-      video.classList.add('has-frame');
-      renderFilm(state);
-    });
+    video.addEventListener('playing', () => showFilmFrame(state));
     video.addEventListener('waiting', () => {
       if (!state.requested) return;
       state.phase = 'loading';
@@ -482,13 +503,6 @@
     window.addEventListener('resize', checkFilms, { passive: true });
     checkFilms();
   }
-  connection?.addEventListener?.('change', () => {
-    filmStates.forEach(state => {
-      if (connection.saveData) pauseFilm(state);
-      else maybeAutoPlayFilm(state);
-    });
-  });
-
   function syncMotion() {
     const off = isMotionOff();
     document.documentElement.classList.toggle('motion-paused', off);
@@ -518,12 +532,12 @@
     setupReveals();
   }));
   reduced.addEventListener('change', () => {
-    if (reduced.matches) filmStates.forEach(state => pauseFilm(state));
     syncMotion();
     setupReveals();
   });
   desktop.addEventListener('change', setupReveals);
   document.addEventListener('visibilitychange', syncMotion);
+  window.addEventListener('pageshow', syncMotion);
   filterWorks(new URLSearchParams(location.search).get('category') || 'all');
   syncMotion();
   setupReveals();
@@ -541,6 +555,8 @@
           phase: state.phase,
           visible: state.visible,
           autoAttempted: state.autoAttempted,
+          manualPaused: state.manualPaused,
+          autoBlocked: state.autoBlocked,
           sourceAttached: state.sourceAttached,
           requested: state.requested,
           currentTime: state.video.currentTime,
