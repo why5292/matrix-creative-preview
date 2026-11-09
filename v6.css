@@ -88,15 +88,10 @@ body[data-page="studio"] .company-focus + .founder-section { padding-top:0; }
 .profile-section { padding-block:clamp(44px,5.5vw,80px); scroll-margin-top:24px; }
 .profile-section>h2 { font-size:clamp(28px,3vw,46px); font-weight:400; line-height:1.2; letter-spacing:-.025em; margin-bottom:28px; text-wrap:balance; }
 .profile-service { border-top:1px solid #59636b; }
-.profile-service:last-child { border-bottom:1px solid #59636b; }
-.profile-service>summary { cursor:pointer; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) auto; gap:24px; align-items:center; padding:24px 0; list-style:none; }
-.profile-service>summary::-webkit-details-marker { display:none; }
-.service-name { font-size:clamp(20px,2vw,29px); line-height:1.35; }
+.service-heading { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:24px; align-items:baseline; padding:24px 0; }
+.service-name { margin:0; font-size:clamp(20px,2vw,29px); font-weight:500; line-height:1.35; }
 .service-scope { color:#b8c3ca; font-size:15px; line-height:1.6; }
-.service-switch { font-size:13px; white-space:nowrap; color:#d4e6f4; text-decoration:underline; text-underline-offset:5px; }
-.hide-service,.profile-service[open] .show-service { display:none; }
-.profile-service[open] .hide-service { display:inline; }
-.profile-service>summary:focus-visible,.profile-index a:focus-visible { outline:2px solid #aaccea; outline-offset:3px; }
+.profile-index a:focus-visible { outline:2px solid #aaccea; outline-offset:3px; }
 .service-body { padding-bottom:32px; }
 .profile-note-grid,.partner-groups { margin:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(22px,3.3vw,54px); }
 .profile-note-grid dt,.partner-groups h3 { margin:0 0 10px; font-size:19px; line-height:1.5; font-weight:500; }
@@ -104,10 +99,10 @@ body[data-page="studio"] .company-focus + .founder-section { padding-top:0; }
 .profile-coatings { margin-top:24px; padding:22px clamp(16px,2.4vw,36px); background:#1a2024; }
 .profile-coatings h4 { margin:0 0 18px; color:#c3d8e7; font-weight:500; font-size:16px; }
 .profile-coatings dt { font-size:16px; }
-.profile-engineering { background:#e9e9e4; color:#182025; }
+.profile-engineering { border-top:1px solid var(--line); }
 .profile-engineering .engineering-lead { font-size:clamp(18px,1.7vw,25px); margin:-6px 0 28px; line-height:1.55; }
-.profile-engineering .profile-note-grid>div,.partner-groups>div { padding-top:18px; border-top:1px solid #929b9f; }
-.profile-engineering dd { color:#3b474d; }
+.profile-engineering .profile-note-grid>div { padding-top:18px; border-top:1px solid var(--line); }
+.partner-groups>div { padding-top:18px; border-top:1px solid #929b9f; }
 .profile-partners { border-top:1px solid var(--line); }
 .partner-groups { margin-top:25px; }
 .partner-groups ul { list-style:none; padding:0; margin:0; }
@@ -115,9 +110,7 @@ body[data-page="studio"] .company-focus + .founder-section { padding-top:0; }
 @media(max-width:850px) {
  .entry-copy { max-width:100%; }
  .entry-intro { max-width:38rem; }
- .profile-service>summary { grid-template-columns:minmax(0,1fr) auto; gap:6px 15px; }
- .service-scope { grid-row:2; }
- .service-switch { grid-column:2; grid-row:1 / span 2; }
+ .service-heading { grid-template-columns:minmax(0,1fr); gap:6px; }
  .profile-note-grid,.partner-groups { grid-template-columns:1fr; gap:20px; }
 }
 @media(max-width:700px) {
