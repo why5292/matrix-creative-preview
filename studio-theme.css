@@ -1,32 +1,23 @@
-/* The profile's reading surface, between the shared dark navigation and footer. */
 body[data-page="studio"] main {
-  --sheet: #f7f5ef;
-  --mist: #e7edef;
-  --print: #202c30;
-  --muted: #45565c;
-  --accent: #2c566b;
-  --line: #bec7c6;
-  color: var(--print);
-  background: var(--sheet);
+  --line:var(--matrix-light-rule);
+  --muted:var(--matrix-body);
+  background:var(--matrix-paper);
+  color:var(--matrix-text);
 }
-
-.page-heading, .studio-lead, .studio-lead + .wrap {
-  background: var(--mist);
+.studio-opening {
+  --muted:var(--matrix-silver);
 }
-
-.profile-index a, .studio-statement > .studio-services,
-.founder-copy > p.founder-roles:not(.kicker), .text-link {
-  color: var(--accent);
+.studio-opening .studio-statement>.studio-services { color:var(--matrix-ice); }
+.profile-index a,.founder-copy>p.founder-roles:not(.kicker),.founder-copy .text-link {
+  color:var(--matrix-link);
 }
-.profile-index a { text-decoration-color: #79909a; }
-.profile-index a:hover, .text-link:hover { color: #163f55; }
-.profile-index a:focus-visible, .text-link:focus-visible { outline-color: var(--accent); }
-
-.service-scope, .profile-note-grid dd, .profile-partners > p, .partner-groups li,
-.founder-experience p, .founder-copy > p:not(.founder-en):not(.kicker):not(.founder-roles) {
-  color: var(--muted);
+.profile-index a { text-decoration-color:#728c9e; }
+.profile-index a:hover,.founder-copy .text-link:hover { color:#153e59; }
+.profile-index a:focus-visible,.founder-copy .text-link:focus-visible { outline-color:var(--matrix-link); }
+.service-scope,.profile-note-grid dd,.profile-partners>p,.partner-groups li,
+.founder-experience p,.founder-copy>p:not(.founder-en):not(.kicker):not(.founder-roles) {
+  color:var(--matrix-body);
 }
-
-.profile-service, .partner-groups > div { border-color: var(--line); }
-.profile-coatings { background: var(--mist); }
-.profile-coatings h4 { color: var(--accent); }
+.profile-service,.partner-groups>div { border-color:var(--matrix-light-rule); }
+.profile-coatings { background:#dfe7ec; }
+.profile-coatings h4 { color:var(--matrix-link); }

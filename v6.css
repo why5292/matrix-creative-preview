@@ -136,3 +136,40 @@ body[data-page="studio"] .company-focus + .founder-section { padding-top:0; }
  .entry-option,html[lang=en] .entry-option { min-height:52px; padding-block:7px; }
  .entry-label small { display:none; }
 }
+
+/* Carry the video portal's navy, icy blue and soft white into each destination. */
+:root {
+  --matrix-night: #0b1119;
+  --matrix-white: #f1f4f5;
+  --matrix-silver: #c4d2dc;
+  --matrix-ice: #adcdeb;
+  --matrix-rule: #354b5e;
+  --matrix-paper: #edf1f3;
+  --matrix-text: #1a2d3b;
+  --matrix-body: #435866;
+  --matrix-link: #275773;
+  --matrix-light-rule: #b6c4cd;
+  --matrix-entry: linear-gradient(112deg, #0b131e 8%, #142637 67%, #213e54);
+}
+body:not(.portal-home) {
+  --ink: var(--matrix-night);
+  --paper: var(--matrix-white);
+  --muted: var(--matrix-silver);
+  --blue: var(--matrix-ice);
+  --line: var(--matrix-rule);
+}
+.site-header #navigation a[aria-current="page"] { color:var(--matrix-ice); }
+.site-header .language-switch select { background:#142230; border-color:#4e6577; }
+.studio-opening, .works-intro, .project-intro, body[data-page="contact"] .page-heading {
+  background:var(--matrix-entry);
+  color:var(--matrix-white);
+}
+.studio-opening .kicker, .works-intro .kicker, .page-heading .kicker,
+.project-intro .back-link { color:var(--matrix-ice); }
+.works-intro { margin-bottom:20px; }
+.project-intro { margin-bottom:var(--photo-gap); }
+body[data-page="contact"] main { background:var(--matrix-paper); }
+.direct-contact { padding-top:clamp(36px,5vw,72px); color:var(--matrix-text); }
+.direct-contact-copy p,.contact-row dt { color:var(--matrix-body); }
+.direct-contact-copy>span,.contact-value,.contact-value a { color:var(--matrix-link); }
+.contact-list,.contact-row { border-color:var(--matrix-light-rule); }
